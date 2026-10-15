@@ -28,7 +28,7 @@
   .galaxy-bg::after{content:'';position:absolute;inset:0;background:var(--overlay);transition:background .4s;}
   @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
 
-  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 24px;}
+  .wrap{position:relative;z-index:1;max-width:100%;margin:0 auto;padding:0 48px;}
 
   /* 顶部：头像左上 + 名字；右侧大标语向下落下 */
   header{padding:36px 0 14px;}
@@ -50,7 +50,7 @@
   .who .en{color:var(--muted);font-size:12px;letter-spacing:2px;}
   /* 右侧大标语：竖排，向下落下 */
   .big-slogan{
-    writing-mode:vertical-rl;font-size:50px;font-weight:700;letter-spacing:10px;
+    writing-mode:vertical-rl;font-size:70px;font-weight:700;letter-spacing:10px;
     color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);white-space:nowrap;
     animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;
   }
@@ -125,8 +125,6 @@
     <a href="#comments">评论</a>
   </nav>
 </header>
-
-<div class="divider">— 往下，慢慢读 ↓ —</div>
 
 <div class="wrap">
 
