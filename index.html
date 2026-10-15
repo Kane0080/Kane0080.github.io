@@ -5,72 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>姜凯耀 | 个人主页</title>
 <meta name="description" content="姜凯耀的个人主页，记录思考、学习与写作。">
-<!--
-  ============================================================
-  姜凯耀的个人主页（星空星系 · 横板动态背景）
-  文件：
-    index.html   主页
-    articles.js  文章列表（含分类标签）
-    articles/    文章正文
-    avatar.jpg   头像（可选）
-  改文字：Ctrl+F 搜 ✏️
-  ============================================================
--->
 <style>
   :root{
     --accent:#7fb3ff; --accent2:#b48cff;
-    --txt:#e8ecf4; --muted:#9aa6bd;
-    --card:rgba(18,24,40,.5); --line:rgba(255,255,255,.12);
-    --bg1:#0b0f24; --bg2:#131a3a;
+    --txt:#e8ecf4; --muted:#aab4c8;
+    --card:rgba(14,18,32,.55); --line:rgba(255,255,255,.14);
+    --overlay:rgba(6,9,20,.62);
   }
   [data-theme="light"]{
-    --accent:#4f6ef7; --accent2:#8a5cf6;
-    --txt:#1f2430; --muted:#6b7280;
-    --card:rgba(255,255,255,.75); --line:rgba(0,0,0,.08);
-    --bg1:#eef1fb; --bg2:#fdf4ff;
+    --txt:#f4f6fb; --muted:#d3dae8;
+    --card:rgba(10,14,28,.4); --line:rgba(255,255,255,.16);
+    --overlay:rgba(8,12,26,.28);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
     color:var(--txt);line-height:1.85;min-height:100vh;overflow-x:hidden;
-    background:linear-gradient(90deg,var(--bg1),var(--bg2) 50%,var(--bg1));
-    transition:color .3s, background .3s;
   }
-  .nebula{
-    position:fixed;inset:-20%;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(ellipse 45% 60% at 20% 45%, rgba(139,92,246,.28), transparent 70%),
-      radial-gradient(ellipse 38% 50% at 45% 35%, rgba(59,130,246,.22), transparent 70%),
-      radial-gradient(ellipse 42% 55% at 70% 55%, rgba(236,72,153,.20), transparent 70%),
-      radial-gradient(ellipse 35% 45% at 85% 40%, rgba(34,211,238,.16), transparent 70%);
-    animation:drift 40s ease-in-out infinite alternate;
-  }
-  [data-theme="light"] .nebula{opacity:.35;}
-  @keyframes drift{from{transform:translateX(-2%) rotate(-1deg);}to{transform:translateX(2%) rotate(1deg);}}
-  #stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
-  [data-theme="light"] #stars{opacity:.25;}
+  /* 真实银河照片背景 + 缓慢缩放 */
+  .galaxy-bg{position:fixed;inset:0;z-index:-2;background:url('galaxy.jpg') center/cover no-repeat;animation:slowZoom 50s ease-in-out infinite alternate;}
+  .galaxy-bg::after{content:'';position:absolute;inset:0;background:var(--overlay);transition:background .4s;}
+  @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
 
-  .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 22px;}
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 22px;}
 
-  header{padding:60px 0 16px;}
-  .hero{display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:center;text-align:left;}
+  /* 顶部：头像左上 + 名字；右侧大标语向下落下 */
+  header{padding:36px 0 14px;}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;}
+  .left{display:flex;align-items:center;gap:18px;}
   .avatar{
-    width:110px;height:110px;border-radius:50%;flex-shrink:0;
+    width:82px;height:82px;border-radius:50%;flex-shrink:0;
     position:relative;cursor:pointer;overflow:hidden;
-    border:2px solid var(--accent);box-shadow:0 0 30px rgba(127,179,255,.4);
+    border:2px solid var(--accent);box-shadow:0 0 24px rgba(127,179,255,.45);
     background:linear-gradient(135deg,var(--accent),var(--accent2));
     display:flex;align-items:center;justify-content:center;transition:.25s;
   }
   .avatar:hover{transform:scale(1.06);}
   .avatar img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-  .avatar .ph{font-size:42px;color:#fff;font-weight:700;}
-  .avatar .hint{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:10px;text-align:center;padding:2px 0;opacity:0;transition:.2s;}
+  .avatar .ph{font-size:32px;color:#fff;font-weight:700;}
+  .avatar .hint{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:9px;text-align:center;padding:1px 0;opacity:0;transition:.2s;}
   .avatar:hover .hint{opacity:1;}
-  .who .name{font-size:32px;font-weight:700;letter-spacing:2px;text-shadow:0 0 20px rgba(127,179,255,.4);}
+  .who .name{font-size:26px;font-weight:700;letter-spacing:2px;text-shadow:0 0 18px rgba(127,179,255,.5);}
   .who .en{color:var(--muted);font-size:12px;letter-spacing:2px;}
-  .who .slogan{font-size:14px;color:var(--accent);margin-top:6px;letter-spacing:1px;}
-  nav{margin-top:24px;display:flex;justify-content:center;gap:22px;font-size:14px;flex-wrap:wrap;}
+  /* 右侧大标语：竖排，向下落下 */
+  .big-slogan{
+    writing-mode:vertical-rl;font-size:30px;font-weight:700;letter-spacing:10px;
+    color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);white-space:nowrap;
+    animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes dropDown{from{opacity:0;transform:translateY(-70px);}to{opacity:1;transform:translateY(0);}}
+
+  nav{margin-top:22px;display:flex;gap:22px;font-size:14px;flex-wrap:wrap;}
   nav a{color:var(--txt);text-decoration:none;padding:4px 2px;border-bottom:1px solid transparent;transition:.2s;}
   nav a:hover{color:var(--accent);border-bottom-color:var(--accent);}
   .divider{text-align:center;margin:26px 0 4px;color:var(--muted);font-size:13px;letter-spacing:3px;}
@@ -105,36 +91,33 @@
   footer .count{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;}
 
   input[type=file]{display:none;}
-
   .fab{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;flex-direction:column;gap:10px;}
-  .fab button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:18px;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.15);transition:.2s;}
+  .fab button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:18px;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.2);transition:.2s;}
   .fab button:hover{transform:scale(1.1);}
   #backTop{display:none;}
 </style>
 </head>
 <body data-theme="dark">
 
-<div class="nebula"></div>
-<canvas id="stars"></canvas>
+<div class="galaxy-bg"></div>
 <input type="file" id="avatarInput" accept="image/*">
 
 <header class="wrap">
-  <div class="hero">
-    <!-- ✏️ 点击头像可上传图片 -->
-    <div class="avatar" id="avatarBox" title="点击上传头像">
-      <img id="avatarImg" alt="头像">
-      <span class="ph" id="avatarPh">Kai</span>
-      <span class="hint">点击换头像</span>
+  <div class="topbar">
+    <div class="left">
+      <div class="avatar" id="avatarBox" title="点击上传头像">
+        <img id="avatarImg" alt="头像">
+        <span class="ph" id="avatarPh">Kai</span>
+        <span class="hint">点击换头像</span>
+      </div>
+      <div class="who">
+        <div class="name">姜凯耀</div>
+        <div class="en">JIANG KAIYAO</div>
+      </div>
     </div>
-    <div class="who">
-      <!-- ✏️ 名字 -->
-      <div class="name">姜凯耀</div>
-      <div class="en">JIANG KAIYAO</div>
-      <!-- ✏️ 头像旁的小标语 -->
-      <div class="slogan">心有明珠，山河明媚</div>
-    </div>
+    <!-- ✏️ 右侧大标语 -->
+    <div class="big-slogan">心有明珠，山河明媚</div>
   </div>
-
   <nav>
     <a href="#about">关于</a>
     <a href="#thoughts">思想记录</a>
@@ -150,12 +133,12 @@
 
   <section id="about">
     <h2>关于我</h2>
-    <div class="card"><!-- ✏️ 自我介绍 --><p>你好，我是姜凯耀。这里是我的个人主页，也是一份持续更新的公开笔记：记录我的思考、学习和写作。欢迎你来逛逛。</p></div>
+    <div class="card"><p>你好，我是姜凯耀。这里是我的个人主页，也是一份持续更新的公开笔记：记录我的思考、学习和写作。欢迎你来逛逛。</p></div>
   </section>
 
   <section id="thoughts">
     <h2>思想记录</h2>
-    <div class="grid"><!-- ✏️ 思想记录 -->
+    <div class="grid">
       <div class="item"><h3>一条思考</h3><p>在这里写下你最近的想法、感悟或读书心得。</p></div>
       <div class="item"><h3>一条思考</h3><p>在这里写下你最近的想法、感悟或读书心得。</p></div>
       <div class="item"><h3>一条思考</h3><p>在这里写下你最近的想法、感悟或读书心得。</p></div>
@@ -170,7 +153,7 @@
 
   <section id="friends">
     <h2>友链</h2>
-    <div class="friends"><!-- ✏️ 友链 -->
+    <div class="friends">
       <a href="https://yeyaozhi.eu.cc" target="_blank">叶耀之</a>
       <a href="#" target="_blank">朋友二</a>
     </div>
@@ -195,46 +178,22 @@
 
 <script>
 (function(){
-  var c=document.getElementById('stars'),x=c.getContext('2d'),W,H,t=0,stars=[],spirals=[];
-  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;} resize();addEventListener('resize',resize);
-  for(var i=0;i<260;i++) stars.push({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.3,tw:.5+Math.random()*1.6,ph:Math.random()*6.28,d:.0002+Math.random()*.0007});
-  for(var j=0;j<900;j++){var a=j/900*Math.PI*2,r=Math.random();spirals.push({a:a,r:r});}
-  function draw(){
-    t+=.016;x.clearRect(0,0,W,H);
-    x.save();x.translate(W*.5,H*.42);x.rotate(t*.03);
-    for(var i=0;i<spirals.length;i++){var s=spirals[i];
-      var rad=s.r*220, ang=s.a+s.r*4+t*.05;
-      var px=Math.cos(ang)*rad, py=Math.sin(ang)*rad*.55;
-      x.fillStyle='rgba(180,160,255,'+(.05+.12*Math.random())+')';
-      x.fillRect(px,py,1.4,1.4);
-    }x.restore();
-    for(var i=0;i<stars.length;i++){var st=stars[i];st.y+=st.d;if(st.y>1)st.y=0;
-      var a=.2+.8*(.5+.5*Math.sin(t*st.tw+st.ph));
-      x.globalAlpha=a;x.fillStyle='#fff';x.beginPath();x.arc(st.x*W,st.y*H,st.r,0,6.283);x.fill();}
-    x.globalAlpha=1;requestAnimationFrame(draw);
-  } draw();
-})();
-
-(function(){
   var btn=document.getElementById('themeBtn');
   function set(t){document.body.setAttribute('data-theme',t);btn.textContent=(t==='dark'?'🌙':'☀️');try{localStorage.setItem('theme',t);}catch(e){}}
   btn.onclick=function(){set(document.body.getAttribute('data-theme')==='dark'?'light':'dark');};
   try{var s=localStorage.getItem('theme');if(s)set(s);}catch(e){}
 })();
-
 (function(){
   var b=document.getElementById('backTop');
   addEventListener('scroll',function(){b.style.display=scrollY>500?'block':'none';});
   b.onclick=function(){scrollTo({top:0,behavior:'smooth'});};
 })();
-
 (function(){
   var box=document.getElementById('avatarBox'),input=document.getElementById('avatarInput'),img=document.getElementById('avatarImg'),ph=document.getElementById('avatarPh');
   box.onclick=function(){input.click();};
   input.onchange=function(){var f=input.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){img.src=e.target.result;img.style.display='block';ph.style.display='none';try{localStorage.setItem('avatar',e.target.result);}catch(err){}};r.readAsDataURL(f);};
   try{var s=localStorage.getItem('avatar');if(s){img.src=s;img.style.display='block';ph.style.display='none';}else{img.onload=function(){img.style.display='block';ph.style.display='none';};img.onerror=function(){img.style.display='none';ph.style.display='';};img.src='avatar.jpg';}}catch(e){}
 })();
-
 (function(){
   var list=document.getElementById('postList'),tagBar=document.getElementById('tagBar');
   var A=window.ARTICLES||[];
