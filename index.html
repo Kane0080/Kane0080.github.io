@@ -68,6 +68,12 @@
   h2{font-size:16px;font-weight:700;letter-spacing:2px;margin-bottom:16px;padding-left:12px;border-left:3px solid var(--accent);}
   p{font-size:15px;}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;backdrop-filter:blur(10px);}
+
+  /* 横板：内容区块双列横向排列 */
+  .content-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:start;}
+  .content-grid section{margin:0;}
+  .content-grid .full{grid-column:1/-1;}
+  @media(max-width:720px){.content-grid{grid-template-columns:1fr;}.big-slogan{font-size:40px;}}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
   .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;transition:.2s;}
   .item:hover{transform:translateY(-3px);border-color:var(--accent);}
@@ -126,7 +132,7 @@
   </nav>
 </header>
 
-<div class="wrap">
+<div class="wrap content-grid">
 
   <section id="about">
     <h2>关于我</h2>
@@ -156,7 +162,7 @@
     </div>
   </section>
 
-  <section id="comments">
+  <section id="comments" class="full">
     <h2>评论区</h2>
     <details class="card"><summary>💬 点击展开 / 收起评论区</summary><div class="giscus"></div></details>
   </section>
