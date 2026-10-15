@@ -49,11 +49,9 @@
   .who .name{font-size:26px;font-weight:700;letter-spacing:2px;text-shadow:0 0 18px rgba(127,179,255,.5);}
   .who .en{color:var(--muted);font-size:12px;letter-spacing:2px;}
   /* 右侧大标语：竖排，向下落下 */
-  .big-slogan{
-    writing-mode:vertical-rl;font-size:70px;font-weight:700;letter-spacing:10px;
-    color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);white-space:nowrap;
-    animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;
-  }
+  .big-slogan{display:flex;flex-direction:row-reverse;gap:16px;align-items:flex-start;}
+  .big-slogan .col{writing-mode:vertical-rl;font-size:60px;font-weight:700;letter-spacing:8px;color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;}
+  .big-slogan .l{margin-top:46px;}
   @keyframes dropDown{from{opacity:0;transform:translateY(-70px);}to{opacity:1;transform:translateY(0);}}
 
   nav{margin-top:22px;display:flex;gap:22px;font-size:14px;flex-wrap:wrap;}
@@ -120,8 +118,8 @@
         <div class="en">JIANG KAIYAO</div>
       </div>
     </div>
-    <!-- ✏️ 右侧大标语 -->
-    <div class="big-slogan">心有明珠，山河明媚</div>
+    <!-- ✏️ 右侧大标语（两列竖排，从右往左读，高低错落） -->
+    <div class="big-slogan"><span class="col r">心有明珠</span><span class="col l">山河明媚</span></div>
   </div>
   <nav>
     <a href="#about">关于</a>
