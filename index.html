@@ -10,12 +10,12 @@
     --accent:#7fb3ff; --accent2:#b48cff;
     --txt:#e8ecf4; --muted:#aab4c8;
     --card:rgba(14,18,32,.55); --line:rgba(255,255,255,.14);
-    --overlay:rgba(6,9,20,.62);
+    --overlay:rgba(6,9,20,.34);
   }
   [data-theme="light"]{
     --txt:#f4f6fb; --muted:#d3dae8;
     --card:rgba(10,14,28,.4); --line:rgba(255,255,255,.16);
-    --overlay:rgba(8,12,26,.28);
+    --overlay:rgba(8,12,26,.14);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -28,7 +28,7 @@
   .galaxy-bg::after{content:'';position:absolute;inset:0;background:var(--overlay);transition:background .4s;}
   @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
 
-  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 22px;}
+  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 24px;}
 
   /* 顶部：头像左上 + 名字；右侧大标语向下落下 */
   header{padding:36px 0 14px;}
@@ -50,7 +50,7 @@
   .who .en{color:var(--muted);font-size:12px;letter-spacing:2px;}
   /* 右侧大标语：竖排，向下落下 */
   .big-slogan{
-    writing-mode:vertical-rl;font-size:40px;font-weight:700;letter-spacing:10px;
+    writing-mode:vertical-rl;font-size:50px;font-weight:700;letter-spacing:10px;
     color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);white-space:nowrap;
     animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;
   }
