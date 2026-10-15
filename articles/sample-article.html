@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>示例文章：欢迎来到我的主页</title>
+<!--
+  这是一篇示例文章。想写新文章，就复制这个文件，改名（比如 article-2.html），
+  改掉 <title> 和正文内容，再回到 articles.js 里加一条记录即可。
+-->
+<style>
+  :root{--txt:#e8ecf4;--muted:#9aa6bd;--accent:#7fb3ff;--line:rgba(255,255,255,.12);--card:rgba(20,26,40,.55);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    color:var(--txt);line-height:1.9;
+    background:radial-gradient(ellipse at 50% -10%,#1b2a52 0%,#0d1230 45%,#060912 100%);
+    min-height:100vh;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:50px 22px 80px;}
+  .back{color:var(--accent);text-decoration:none;font-size:14px;}
+  .back:hover{text-decoration:underline;}
+  h1{font-size:28px;margin:22px 0 8px;line-height:1.4;}
+  .date{color:var(--muted);font-size:13px;margin-bottom:28px;}
+  .content{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 30px;font-size:16px;}
+  .content p{margin-bottom:16px;}
+  .content h2{font-size:20px;margin:24px 0 10px;color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回主页</a>
+  <!-- ✏️ 文章标题 -->
+  <h1>示例文章：欢迎来到我的主页</h1>
+  <div class="date">2026-XX-XX</div>
+  <div class="content">
+    <!-- ✏️ 正文：直接在这里写，<p>…</p> 是一段，<h2>…</h2> 是小标题 -->
+    <p>这是正文第一段。把这里换成你自己的文字即可。</p>
+    <p>这是正文第二段。段落之间用 &lt;p&gt; 标签分隔。</p>
+    <h2>小标题</h2>
+    <p>可以用 &lt;h2&gt; 加小标题，让文章更有层次。</p>
+  </div>
+</div>
+</body>
+</html>
