@@ -156,6 +156,15 @@
     </div>
   </section>
 
+  <section id="comments">
+    <h2>评论区</h2>
+    <!-- 可折叠评论区：点一下标题展开/收起，评论数据存在 GitHub Discussions -->
+    <details class="card">
+      <summary>💬 点击展开 / 收起评论区</summary>
+      <div class="giscus"></div>
+    </details>
+  </section>
+
 </div>
 
 <footer>© 2026 姜凯耀 · 仰望星空 · 脚踏实地</footer>
@@ -241,5 +250,22 @@
 </script>
 
 <script src="articles.js"></script>
+
+<!-- giscus 评论区脚本（REPO_ID / CATEGORY_ID 待填，配置好评论区才会显示） -->
+<script src="https://giscus.app/client.js"
+  data-repo="Kane0080/Kane0080.github.io"
+  data-repo-id="R_kgDOVK-1SA"
+  data-category="General"
+  data-category-id="DIC_kwDOVK-1SM4DIgtj"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="dark"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async>
+</script>
 </body>
 </html>
