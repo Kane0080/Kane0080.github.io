@@ -50,7 +50,7 @@
   .who .en{color:var(--muted);font-size:12px;letter-spacing:2px;}
   /* 右侧大标语：竖排，向下落下 */
   .big-slogan{
-    writing-mode:vertical-rl;font-size:30px;font-weight:700;letter-spacing:10px;
+    writing-mode:vertical-rl;font-size:40px;font-weight:700;letter-spacing:10px;
     color:#fff;text-shadow:0 0 22px rgba(127,179,255,.7);white-space:nowrap;
     animation:dropDown 1.3s cubic-bezier(.2,.7,.2,1) both;
   }
@@ -100,15 +100,14 @@
 <body data-theme="dark">
 
 <div class="galaxy-bg"></div>
-<input type="file" id="avatarInput" accept="image/*">
+
 
 <header class="wrap">
   <div class="topbar">
     <div class="left">
-      <div class="avatar" id="avatarBox" title="点击上传头像">
-        <img id="avatarImg" alt="头像">
-        <span class="ph" id="avatarPh">Kai</span>
-        <span class="hint">点击换头像</span>
+      <div class="avatar">
+        <span class="ph">Kai</span>
+        <img src="avatar.jpg" alt="头像" onerror="this.style.display='none'">
       </div>
       <div class="who">
         <div class="name">姜凯耀</div>
@@ -188,12 +187,7 @@
   addEventListener('scroll',function(){b.style.display=scrollY>500?'block':'none';});
   b.onclick=function(){scrollTo({top:0,behavior:'smooth'});};
 })();
-(function(){
-  var box=document.getElementById('avatarBox'),input=document.getElementById('avatarInput'),img=document.getElementById('avatarImg'),ph=document.getElementById('avatarPh');
-  box.onclick=function(){input.click();};
-  input.onchange=function(){var f=input.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){img.src=e.target.result;img.style.display='block';ph.style.display='none';try{localStorage.setItem('avatar',e.target.result);}catch(err){}};r.readAsDataURL(f);};
-  try{var s=localStorage.getItem('avatar');if(s){img.src=s;img.style.display='block';ph.style.display='none';}else{img.onload=function(){img.style.display='block';ph.style.display='none';};img.onerror=function(){img.style.display='none';ph.style.display='';};img.src='avatar.jpg';}}catch(e){}
-})();
+
 (function(){
   var list=document.getElementById('postList'),tagBar=document.getElementById('tagBar');
   var A=window.ARTICLES||[];
